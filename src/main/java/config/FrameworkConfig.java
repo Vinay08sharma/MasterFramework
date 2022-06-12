@@ -1,10 +1,13 @@
 package config;
 
 import config.converters.StringToBrowserType;
+import config.converters.StringtoURLConverter;
 import config.enums.BrowserRemoteModeType;
 import config.enums.BrowserType;
 import config.enums.RunModeBrowserType;
 import org.aeonbits.owner.Config;
+
+import java.net.URL;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
@@ -23,4 +26,16 @@ public interface FrameworkConfig extends Config {
 
     @Key("browserRemoteMode")
     BrowserRemoteModeType browserRemoteMode();
+
+    @ConverterClass(StringtoURLConverter.class)
+    @Key("seleniumGridURL")
+    URL seleniumGridURL();
+
+    @ConverterClass(StringtoURLConverter.class)
+    @Key("selenoidURL")
+    URL selenoidURL();
+
+    @ConverterClass(StringtoURLConverter.class)
+    @Key("browserStackURL")
+    URL browserStackURL();
 }

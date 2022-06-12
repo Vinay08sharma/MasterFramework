@@ -1,4 +1,5 @@
 import config.ConfigFactory;
+import driver.manager.web.local.ChromeManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import config.FrameworkConfig;
 import org.aeonbits.owner.ConfigCache;
@@ -11,23 +12,23 @@ import org.testng.annotations.Test;
 public class DemoTest {
 
     WebDriver driver;
-    @BeforeTest(enabled = false)
+    @BeforeTest(enabled = true)
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+      driver = ChromeManager.getDriver();
     }
 
     @Test
     public void testLogin (){
-        System.out.println(ConfigFactory.getConfig().browser());
-//        driver.get("https://www.google.co.in/");
+
+
+        driver.get("https://www.google.co.in/");
 //        driver.findElement(By.name("q")).sendKeys("Selenium");
 //        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 //        String title = driver.getTitle();
 //        System.out.println("Page Title is "+title);
         }
 
-    @AfterTest
+    @AfterTest(enabled = true)
     public void tearDown() {
         driver.quit();
     }
